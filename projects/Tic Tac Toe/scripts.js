@@ -5,7 +5,7 @@ let gameover = new Audio('gameover.mp3');
 let t = 'X';
 let tcount = 0;
 let boxs = Array.from(document.getElementsByClassName('box'));
-music.play(); 
+
 // turn.play();
 // gameover.play();
 
@@ -46,6 +46,7 @@ const checkWin = () => {
     if (isThreeSame(0, 1, 2) || isThreeSame(0, 3, 6) || isThreeSame(0, 4, 8) ||
         isThreeSame(1, 4, 7) || isThreeSame(2, 5, 8) || isThreeSame(3, 4, 5) ||
         isThreeSame(6, 7, 8) || isThreeSame(6, 4, 2)) {
+        music.currentTime = 0;
         return true;
     }
     return false;
@@ -58,6 +59,7 @@ boxs.forEach((element, i) => {
     console.log("sdfsaf");
     element.addEventListener('click', () => {
 
+        music.play(); 
         if (element.getElementsByClassName('boxtext')[0].innerText == "") {
             element.getElementsByClassName('boxtext')[0].innerText = t;
             turn.play(0.01);
@@ -69,7 +71,6 @@ boxs.forEach((element, i) => {
             tcount = 0;
             music.pause();
             gameover.play();
-            music.currentTime = 0;
             setTimeout(resetText, 2000);
             setTimeout(infoText, 2000);
         }
